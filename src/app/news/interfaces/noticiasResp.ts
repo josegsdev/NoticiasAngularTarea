@@ -13,7 +13,7 @@ export interface NoticiasDetalle {
     video_url:         null;
     description:       null | string;
     content:           null | string;
-    pubDate:           Date;
+    pubDate:           Date |null ;
     full_description?: string;
     image_url:         null | string;
     source_id:         string;

@@ -6,12 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: []
 })
 export class ContenedorComponent implements OnInit {
-
+  public fila:any;
   constructor() { }
 
   ngOnInit(): void {
   }
   logea(e:any){
-    console.table(e);
+    this.fila=e;
+   console.table(this.fila);
   }
 }

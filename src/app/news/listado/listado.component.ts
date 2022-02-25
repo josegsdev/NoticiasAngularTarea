@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Noticias, NoticiasDetalle } from '../interfaces/noticiasResp';
 import { SnoticiasService } from '../snoticias.service';
 
@@ -7,7 +7,7 @@ import { SnoticiasService } from '../snoticias.service';
   templateUrl: './listado.component.html',
   styleUrls: []
 })
-export class ListadoComponent  {
+export class ListadoComponent implements OnInit {
   private filtros:string='';
   public query:string='';
 
@@ -22,7 +22,9 @@ export class ListadoComponent  {
   @Output() onFilas:EventEmitter<NoticiasDetalle>=new EventEmitter()
 
   constructor(private serv:SnoticiasService){}
-
+  ngOnInit(): void {
+    this.buscar();
+  }
   get printResultados(){
     console.log(this.resultados);
     return this.resultados;
@@ -39,7 +41,7 @@ export class ListadoComponent  {
   }
 
   fila(ev:any){
-    console.log("fila en listado:"+ev);
+    //console.log("fila en listado:"+ev);
     this.onFilas.emit(ev);
   }  
 

@@ -1,13 +1,13 @@
-<div class="row">
+<div class="row" *ngIf="fila != null">
     <div class="col">
 
 
         <div class="row">
             <div class="col-4" style="background-color: red;" >
-                    s
+                    {{fila.title}}
             </div>
             <div class="col-8" style="background-color: blue;">
-                l
+                {{fila.full_description}}
             </div>
         </div>
         

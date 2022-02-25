@@ -18,7 +18,7 @@ export class InputBusquedaComponent implements OnInit {
 
   ngOnInit(): void {
       this.debouncer
-      .pipe(debounceTime(1000))
+      .pipe(debounceTime(500))
       .subscribe(valor =>{
         this.onDeBounce.emit(this.termino);
         console.log("debouncer: "+this.termino);
