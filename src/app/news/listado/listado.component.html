@@ -1,0 +1,32 @@
+<div class="row">
+    <div class="col" style="background-color:white;">
+
+
+        <div class="row align-items-center" >
+            <div class="col-6">
+                <h1>Titulo detalle component</h1>
+            </div>
+            <div class="col-6">
+                <app-input-busqueda
+                (onEnter)="parametroBuscar( $event )" 
+                (onDeBounce)="parametroBuscar( $event )"></app-input-busqueda>
+            </div>
+        </div>
+
+        
+        <div class="row">
+
+            <div class="col-3" style="background-color: blue;">
+                <app-menu-opciones (onParametros)="parametrosFiltros( $event )"></app-menu-opciones>
+            </div>
+
+            <div class="col-9" style="background-color: red;">
+                <app-tabla [rows]="printResultados.results" (onFila)="fila( $event )"></app-tabla>
+            </div>
+
+        </div>
+
+
+
+    </div>
+</div>

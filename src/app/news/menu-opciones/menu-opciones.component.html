@@ -1,0 +1,59 @@
+
+     <div class="card mt-3" >
+     <div class="card-header">
+      Filtrar por pais
+    </div>
+   
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <select class="form-select form-select-lg" [(ngModel)]="optSelect" (ngModelChange)="cambioSelect()">
+          <option value="">Elija un pais</option>
+          <option *ngFor="let p of paises" value="{{p.valor}}">{{p.nombre | titlecase}}</option>
+        </select>
+      </li>
+    </ul>
+  </div>
+
+  <div class="card mt-3" >
+    <div class="card-header">
+      Filtrar por categoria
+    </div>
+    <ul class="list-group list-group-flush">
+      <li *ngFor="let c of categorias" class="list-group-item">
+        <div class="form-check">
+            <input class="form-check-input" 
+            type="checkbox" 
+            [id]="c.id"
+            [name]="c.id"
+            [(ngModel)]="c.chequeado"
+            (change)="cambioCheckCat()"
+            >
+            <label class="form-check-label" for="{{c.id}}">
+            {{c.label}}
+            </label>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="card mt-3">
+    <div class="card-header">
+      Filtrar por idioma
+    </div>
+    <ul class="list-group list-group-flush">
+      <li *ngFor="let l of lenguajes" class="list-group-item">
+        <div class="form-check">
+            <input class="form-check-input" 
+            type="checkbox" 
+            [id]="l.id"
+            [name]="l.id"
+            [(ngModel)]="l.chequeado"
+            (change)="cambioCheckLeng()"
+            >
+            <label class="form-check-label" for="{{l.id}}">
+            {{l.label}}
+            </label>
+        </div>
+      </li>
+    </ul>   
+  </div>

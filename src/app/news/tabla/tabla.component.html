@@ -1,0 +1,14 @@
+<ul class="list-group list-group-flush">
+    <li class="list-group-item" *ngFor="let new of rows" >
+        <div class="row">
+            <div class="col-3" style="background-color: blue;">
+                <img src="{{ new.image_url != null ? new.image_url:'./assets/img/no-preview.png' }}" 
+                    style="width: 90%;">
+            </div>
+            <div class="col-9" style="background-color: orange;">
+                <h4>{{new.title | titlecase}}</h4><small>{{new.pubDate | date:'short'}}</small>
+                <p>{{new.description }}<a [routerLink]="[ '/noticia', new.link]"  (click)="capturaFila( new )">ver mas...</a></p>
+            </div>
+        </div>
+    </li>
+  </ul>
