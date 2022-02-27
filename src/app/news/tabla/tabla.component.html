@@ -7,7 +7,7 @@
             </div>
             <div class="col-9" >
                 <h4>{{new.title | titlecase}}</h4><small>{{new.pubDate | date:'short'}}</small>
-                <p>{{new.description }}<a [routerLink]="[ '/noticia', new.link]"   (click)="capturaFila( new )">ver mas...</a></p>
+                <p>{{ new.description | slice:0:160 }}... <a [routerLink]="[ '/noticia', new.source_id]"   (click)="capturaFila( new )">ver mas</a></p>
             </div>
         </div>
     </li>

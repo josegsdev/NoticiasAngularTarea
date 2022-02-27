@@ -23,10 +23,10 @@ export class ListadoComponent implements OnInit {
 
   constructor(private serv:SnoticiasService){}
   ngOnInit(): void {
-    this.buscar();
+    //this.buscar();
   }
   get printResultados(){
-    console.log(this.resultados);
+    //console.log(this.resultados);
     return this.resultados;
   }
 
@@ -53,7 +53,7 @@ export class ListadoComponent implements OnInit {
          this.resultados=resp;
          // console.table(resp.results);
         },
-        error:(err)=>{
+        error:()=>{
           this.resultados={
             status:       '',
             totalResults: 0,

@@ -1,0 +1,19 @@
+<br>
+<div class="row">
+    <div class="col">
+        <div> 
+            <a href="#">Primera</a> | 
+            <a href="#">Anterior</a> | 
+            
+            <a *ngFor="let item of linksGrupo[setDeNumeros]" 
+                (click)="clickNumero( item  )"> 
+            {{ item  }} 
+            </a>
+            
+          |  <a href="#">Siguiente</a> 
+          |  <a href="#">Ultima</a> 
+        </div>
+    </div>
+</div>
+<br>
+<br>

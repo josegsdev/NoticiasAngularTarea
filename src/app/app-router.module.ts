@@ -7,11 +7,13 @@ const rutas: Routes=[
   {
     path:'',
     component:ListadoComponent,
-    pathMatch: 'full'
+    pathMatch: 'full',
+    outlet:'app-listado'
   },
   {
     path:'noticia/:nid',
-    component:DetalleComponent
+    component:DetalleComponent,
+    outlet:'app-detalle'
   },
   {
     path:'**',
