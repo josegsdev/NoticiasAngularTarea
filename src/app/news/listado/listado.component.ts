@@ -10,7 +10,8 @@ import { SnoticiasService } from '../snoticias.service';
 export class ListadoComponent implements OnInit {
   private filtros:string='';
   public query:string='';
-
+  private paginacion:number=1;
+  public np:number=0;
 
   private resultados:Noticias={
     status:       '',
@@ -19,12 +20,19 @@ export class ListadoComponent implements OnInit {
     nextPage:     0
   }; 
 
+  private totalResp:number=11;  
+
   @Output() onFilas:EventEmitter<NoticiasDetalle>=new EventEmitter()
 
   constructor(private serv:SnoticiasService){}
   ngOnInit(): void {
+    
     this.buscar();
   }
+  get totalRespN():number{
+    return this.totalResp;
+  } 
+
   get printResultados(){
     console.log(this.resultados);
     return this.resultados;
@@ -40,6 +48,12 @@ export class ListadoComponent implements OnInit {
     this.buscar();
   }
 
+  parametroPaginacion(e:number){
+    this.paginacion=e;
+
+    console.log(`#######${e}#######`);
+  }
+
   fila(ev:any){
     //console.log("fila en listado:"+ev);
     this.onFilas.emit(ev);
@@ -50,7 +64,10 @@ export class ListadoComponent implements OnInit {
       {
         next:(resp)=>{
          // this.resultados=resp.results;
+         
          this.resultados=resp;
+         this.totalResp=this.resultados.totalResults;
+         
          // console.table(resp.results);
         },
         error:(err)=>{

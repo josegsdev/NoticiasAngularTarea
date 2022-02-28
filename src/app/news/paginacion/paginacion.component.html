@@ -1,0 +1,24 @@
+<br>
+<div class="row">
+    <div class="col">
+        <div class="row">
+            <div class="col">
+                <span>{{ total }} resultados | {{ nPag }} página(s)</span>
+            </div>
+        </div>
+        <div *ngIf="nPag > 1"> 
+            <a href="#" (click)="clickNumero(1);">Primera</a> | 
+            <a href="#" (click)="clickNumero( pagAct - 1 );">Anterior</a> | 
+            
+            <a *ngFor="let item of printLinks.slice((iniN * numV) - ofst, numV * (iniN + 1) )" 
+                (click)="clickNumero( item + 1 );" [class]="cssActive( item+1 )"> 
+            {{ item + 1  }} 
+            </a>
+            
+          |  <a href="#" (click)="clickNumero( pagAct + 1 );">Siguiente</a> 
+          |  <a href="#" (click)="clickNumero(nPag);">Ultima</a> 
+        </div>
+    </div>
+</div>
+<br>
+<br>

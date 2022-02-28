@@ -10,6 +10,7 @@ import { RouterModule } from '@angular/router';
 import { AppRouterModule } from '../app-router.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ContenedorComponent } from './contenedor/contenedor.component';
+import { PaginacionComponent } from './paginacion/paginacion.component';
 
 
 
@@ -20,7 +21,8 @@ import { ContenedorComponent } from './contenedor/contenedor.component';
     MenuOpcionesComponent,
     TablaComponent,
     InputBusquedaComponent,
-    ContenedorComponent
+    ContenedorComponent,
+    PaginacionComponent
   ],
   exports:[
     DetalleComponent,
