@@ -10,10 +10,10 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   span{color:#888; display:block; padding: 30px 15px}
   `]}
 )
-export class PaginacionComponent implements OnInit {
+export class PaginacionComponent implements OnInit{
 
-  private paginaActual:number=1;
-  @Input() totalResultados:number=0;
+  private paginaActual:number=0;
+  private totalResultados:number=547;
   private resultadosPorPagina:number=10;
   private paginasN:number=Math.ceil(this.totalResultados / this.resultadosPorPagina);
   private linksGrupo:number[]=[];
@@ -21,21 +21,12 @@ export class PaginacionComponent implements OnInit {
   private inicioN:number=0;
   private offset:number=0;
 
+
   @Output() onPaginacion: EventEmitter<number>=new EventEmitter();
 
-  constructor(){
+  constructor(){}
 
-  }
-  ngOnInit(): void {
-    this.resultadosPorPagina=10;
-    this.paginaActual=1;
-    this.linksGrupo=[];
-    this.numerosVisibles=5;
-    this.inicioN=0;
-    this.offset=0;
-    this.paginasN=Math.ceil(this.totalResultados / this.resultadosPorPagina);
-    this.construyeLinksNumeros();
-  }
+  ngOnInit(): void {this.construyeLinksNumeros()}
 
   get pagAct():number{
     return this.paginaActual;
@@ -58,6 +49,7 @@ export class PaginacionComponent implements OnInit {
   get nPag():number{
     return this.paginasN;
   }
+
   construyeLinksNumeros(){
     for(let i=0; i < this.paginasN ;i++){
       this.linksGrupo[i]=i;
@@ -65,7 +57,12 @@ export class PaginacionComponent implements OnInit {
   }
 
   clickNumero(num:number){
-    if(num <1 || num >this.paginasN){return;}
+    // this.onPaginacion.emit(this.paginaActual );
+     this.reseteo(num);
+  }
+
+  reseteo(num:number){
+    console.log(num);
     switch (num) {
       case 1:
         this.inicioN=0;
@@ -89,25 +86,9 @@ export class PaginacionComponent implements OnInit {
      this.offset=this.inicioN === 0 ? 0:1;
      if(this.paginaActual === num){return;}
      this.paginaActual = num;
-
-     this.onPaginacion.emit(this.paginaActual);
-
-    console.log(`
-    ///////////////////////////////////////////////
-    paginaActual: ${this.paginaActual}
-    totalResultados: ${this.totalResultados}
-    resultadosPorPagina: ${this.resultadosPorPagina}
-    numerosVisibles: ${this.numerosVisibles}
-    inicioN: ${this.inicioN}
-    offset: ${this.offset}
-    ----------desde: ${(this.inicioN * this.numerosVisibles) }----------
-    ----------hasta: ${this.numerosVisibles * (this.inicioN + 1)}---------
-    //////////////////////////////////////////////
-    `);
   }
 
   cssActive(a:number):string{
-  
     return (this.paginaActual === a ) ? 'active':'not-active';
   }
 

@@ -10,7 +10,8 @@ import { SnoticiasService } from '../snoticias.service';
 export class ListadoComponent implements OnInit {
   private filtros:string='';
   public query:string='';
-  private paginacion:number=1;
+  private paginacion:number=0;
+  public actualpagina:number=0;
   public np:number=0;
 
   private resultados:Noticias={
@@ -20,13 +21,12 @@ export class ListadoComponent implements OnInit {
     nextPage:     0
   }; 
 
-  private totalResp:number=11;  
+  private totalResp:number=0;  
 
   @Output() onFilas:EventEmitter<NoticiasDetalle>=new EventEmitter()
 
   constructor(private serv:SnoticiasService){}
   ngOnInit(): void {
-    
     this.buscar();
   }
   get totalRespN():number{
@@ -34,7 +34,6 @@ export class ListadoComponent implements OnInit {
   } 
 
   get printResultados(){
-    console.log(this.resultados);
     return this.resultados;
   }
 
@@ -49,9 +48,8 @@ export class ListadoComponent implements OnInit {
   }
 
   parametroPaginacion(e:number){
-    this.paginacion=e;
-
-    console.log(`#######${e}#######`);
+    this.paginacion=e - 1 ;
+    this.buscar();
   }
 
   fila(ev:any){
@@ -60,15 +58,17 @@ export class ListadoComponent implements OnInit {
   }  
 
   buscar(){
-    this.serv.buscar(this.filtros+this.query).subscribe(
+    
+    this.serv.buscar(this.filtros+this.query+'&page='+this.paginacion).subscribe(
       {
         next:(resp)=>{
          // this.resultados=resp.results;
-         
+         this.actualpagina= resp.nextPage ;
+
          this.resultados=resp;
          this.totalResp=this.resultados.totalResults;
          
-         // console.table(resp.results);
+          //console.table(resp.results);
         },
         error:(err)=>{
           this.resultados={

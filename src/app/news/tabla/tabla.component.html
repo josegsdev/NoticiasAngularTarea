@@ -5,9 +5,13 @@
                 <img src="{{ new.image_url != null ? new.image_url:'./assets/img/no-preview.png' }}" 
                  class="img-thumbnail">
             </div>
-            <div class="col-9" >
+            <div class="col-9" ><a href="{{new.link}}" target="_blank"  >Ver noticia en sitio de origen</a>
                 <h4>{{new.title | titlecase}}</h4><small>{{new.pubDate | date:'short'}}</small>
-                <p>{{new.description | slice:0:120 }}... <a href="{{new.link}}" target="_blank"  (click)="capturaFila( new )">ver mas</a></p>
+                <p>{{new.description | slice:0:120 }}...
+                    <a href="javascript:;" (click)="capturaFila( new )">Mas detalles</a>
+                    <br>
+                    
+                </p>
             </div>
         </div>
     </li>

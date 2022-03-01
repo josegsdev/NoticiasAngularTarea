@@ -1,3 +1,9 @@
 <br>
-<app-listado (onFilas)="logea($event)" ></app-listado>
-<app-detalle [fila]="fila" ></app-detalle>
+
+<DIV [class]="(fila)? 'hide':''">
+    <app-listado (onFilas)="logea($event)" ></app-listado>
+</DIV>
+
+<DIV [class]="(fila)? '':'hide'">
+    <app-detalle [fila]="fila" (onVolverAtras)="vuelve( $event )"></app-detalle>
+</DIV>

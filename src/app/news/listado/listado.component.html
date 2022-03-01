@@ -1,6 +1,5 @@
-<div class="row pt-4">
+<div class="row pt-4" id="listado">
     <div class="col " style="background-color:white;" >
-
 
         <div class="row align-items-center" >
             <div class="col-6">
@@ -21,8 +20,26 @@
             </div>
 
             <div class="col-9">
+
+            <ng-container *ngIf="printResultados.status != 'success'; then cargando; else tablacargada"></ng-container>
+            <ng-template #cargando>
+
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-6">
+                    <div class="spinner-border text-success" role="status" >
+                        <span class="sr-only "></span>
+                    </div>
+                </div>
+            </div>
+
+            </ng-template>
+            <ng-template #tablacargada>
                 <app-tabla [rows]="printResultados.results" (onFila)="fila( $event )"></app-tabla>
-                <app-paginacion [totalResultados]="totalRespN"  (onPaginacion)="parametroPaginacion( $event )"></app-paginacion>
+         
+
+
+                <app-paginacion  (onPaginacion)="parametroPaginacion( $event )"></app-paginacion>
+            </ng-template>  
             </div>
 
         </div>

@@ -1,17 +1,32 @@
-<div class="row" *ngIf="fila != null">
+<div class="row" *ngIf="fila != null" id="detalle">
     <div class="col">
 
-
         <div class="row">
-            <div class="col-4" style="background-color: red;" >
-                    {{fila.title}}
+            <div class="col-2"  >
+                <button (click)="volver()" class="btn btn-primary">Volver</button>
             </div>
-            <div class="col-8" style="background-color: blue;">
-                {{fila.full_description}}
-            </div>
-        </div>
-        
+            <div class="col-10" >
+                <h2>{{fila.title | titlecase}}</h2>
+                <h4>
+                    <em>{{ fila.description }}</em>
+                </h4>
+                <small *ngIf="fila.creator">Autor: {{fila.creator}}</small>
+                <small *ngIf="fila.source_id"> - Fuente: 
+                    <a href="{{fila.link}}" target="_blank">{{ fila.source_id }}</a></small>
+                <small *ngIf="fila.pubDate"> - {{fila.pubDate | date:'long'}}</small>
+                <div>
+                    <img src="{{fila.image_url}}" class="img-fluid pt-4 pb-3" *ngIf="fila.image_url">
+                </div>
+                
+                <p class="pt-4">{{fila.full_description}}</p>
 
+                <iframe *ngIf="fila.video_url" width="420" height="315"
+                    src="{{fila.video_url}}">
+                </iframe>
+            </div>
+
+            
+        </div>
 
     </div>
 </div>

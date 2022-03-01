@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NoticiasDetalle } from '../interfaces/noticiasResp';
 
 
@@ -8,6 +8,8 @@ import { NoticiasDetalle } from '../interfaces/noticiasResp';
   styleUrls: []
 })
 export class DetalleComponent implements OnInit {
+
+  @Output() onVolverAtras:EventEmitter<boolean>=new EventEmitter();
 
   @Input() fila:NoticiasDetalle | null ={
     title:             '',
@@ -27,5 +29,7 @@ export class DetalleComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
+  volver(){
+    this.onVolverAtras.emit(true);
+  }
 }
